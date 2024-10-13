@@ -1,0 +1,16 @@
+- Date: June 2024
+  Title: 2nd place, CARLA Autonomous Driving Challenge
+  Project Page: https://opendrivelab.com/challenge2024/#carla
+  Organizer: OpenDriveLab, CVPR 2024 Workshop
+  Description: Developed PDM-Lite, a rule-based privileged expert for dataset collection in the CARLA Autonomous Driving Challenge on Leaderboard 2.0. Contributed to an end-to-end system earning Honorable Runner-Up. PDM-Lite also aided the winning team's Innovation Award and Outstanding Champion title.
+
+- Date: August 2023
+  Title: 1st Place, Reinforcement Learning Challenge
+  Code: https://github.com/j-beisswenger/AlphaPuck
+  Organizer: Department for Distributed Intelligence / Autonomous Learning, Eberhard Karls Universität Tübingen
+  Description: Development of a Reinforcement Learning Agent to Compete Against Other Students' Agents in an OpenAI Gym Hockey Environment on achieved 1st place among 89 participants.
+
+- Date: January 2023
+  Title: 3rd Place, Self-Driving Cars Challenge
+  Organizer: Autonomous Vision Group, Eberhard Karls Universität Tübingen
+  Description: Development of a Modular Pipeline for the CarRacing Environment in OpenAI Gym.

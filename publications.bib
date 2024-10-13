@@ -1,0 +1,50 @@
+---
+---
+
+
+@STRING{CVPR = {Proc. IEEE Conf. on Computer Vision and Pattern	Recognition (CVPR)}}
+@STRING{ECCV = {European Conference on Computer Vision (ECCV)}}
+@STRING{ICCV = {Proc. of the IEEE International Conf. on Computer Vision (ICCV)}}
+@STRING{THREEDV = {Proc. of the International Conf. on 3D Vision (3DV)}}
+@STRING{NEURIPS = {Advances in Neural Information Processing Systems (NeurIPS)}}
+@STRING{ARXIV = {arXiv.org}}
+@STRING{ICLR = {Proc. of the International Conf. on Learning Representations (ICLR)}}
+
+@inproceedings{sima2024drivelm,
+  author={Chonghao Sima, Katrin Renz, Kashyap Chitta, Li Chen, Hanxue Zhang, Chengen Xie, Jens Beißwenger, Ping Luo, Andreas Geiger, Hongyang Li},
+  title={DriveLM: Driving with Graph Visual Question Answering},
+  booktitle=ECCV,
+  year={2024},
+  award={Oral Presentation},
+  html={https://opendrivelab.com/DriveLM/},
+  pdf={https://arxiv.org/pdf/2312.14150},
+  img={assets/publications/drivelm.jpg},
+  code={https://github.com/OpenDriveLab/DriveLM},
+  abstract={We study how vision-language models (VLMs) trained on web-scale data can be integrated into end-to-end driving systems to boost generalization and enable interactivity with human users. While recent approaches adapt VLMs to driving via single-round visual question answering (VQA), human drivers reason about decisions in multiple steps. Starting from the localization of key objects, humans estimate object interactions before taking actions. The key insight is that with our proposed task, Graph VQA, where we model graph-structured reasoning through perception, prediction and planning question-answer pairs, we obtain a suitable proxy task to mimic the human reasoning process. We instantiate datasets (DriveLM-Data) built upon nuScenes and CARLA, and propose a VLM-based baseline approach (DriveLM-Agent) for jointly performing Graph VQA and end-to-end driving. The experiments demonstrate that Graph VQA provides a simple, principled framework for reasoning about a driving scene, and DriveLM-Data provides a challenging benchmark for this task. Our DriveLM-Agent baseline performs end-to-end autonomous driving competitively in comparison to state-of-the-art driving-specific architectures. Notably, its benefits are pronounced when it is evaluated zero-shot on unseen sensor configurations. Our question-wise ablation study shows that the performance gain comes from the rich annotation of prediction and planning QA pairs in the graph structure. All data, models and an official evaluation server are available at https://github.com/OpenDriveLab/DriveLM.},
+  bibtex={title, author, booktitle, year},
+}
+
+@techreport{zimmerlin2023hidden,
+  author={Julian Zimmerlin, Jens Beißwenger, Bernhard Jaeger, Andreas Geiger, Kashyap Chitta},
+  title={Hidden Biases of End-to-End Driving Datasets},
+  booktitle = ARXIV,
+  year={2024},
+  pdf={https://opendrivelab.github.io/Challenge%202024/carla_Tuebingen%20AI.pdf},
+  img={assets/publications/hidden_biases.jpg},
+  award = {Honorable Runner-Up},
+  abstract={End-to-end driving systems have made rapid progress, but have so far not been applied to the challenging new CARLA Leaderboard 2.0. Furthermore, while there is a large body of literature on end-to-end architectures and training strategies, the impact of the training dataset is often overlooked. In this work, we make a first attempt at end-to-end driving for Leaderboard 2.0. Instead of investigating architectures, we systematically analyze the training dataset, leading to new insights: (1) Expert style significantly affects downstream policy performance. (2) On complex driving datasets, frames should not be weighted based on simplistic criteria such as class frequencies. (3) Instead, estimating whether a frame changes the target labels compared to previous frames can reduce dataset size without losing important information. By incorporating these findings, our model ranks first and second respectively on the map and sensors tracks of the 2024 CARLA Challenge.},
+  bibtex={title, author, year},
+}
+
+@misc{Beißwenger2024PdmLite,
+  author={Jens Beißwenger},
+  title={PDM-Lite: A Rule-Based Planner for CARLA Leaderboard 2.0},
+  year={2024},
+  pdf={https://github.com/OpenDriveLab/DriveLM/blob/DriveLM-CARLA/pdm_lite/docs/report.pdf},
+  img={assets/publications/pdm_lite.jpg},
+  video = {https://www.youtube.com/watch?v=uic3xwcOQ9w},
+  abstract={Autonomous urban driving exposes numerous corner cases that previous planning approaches struggle to handle robustly. The CARLA Leaderboard 2.0 simulator introduces 38 complex scenarios involving high-speed highway driving, traffic violations, and dynamic obstacles, posing a demanding closed-loop benchmark for autonomous systems. We propose PDM-Lite, the first rule-based expert system to successfully navigate all scenarios in this realistic environment. Integrating components like the Intelligent Driver Model, kinematic bicycle predictions, and dynamic lane changing for obstacle handling, PDM-Lite demonstrates state-of-the-art performance through extensive evaluations. It achieves near-perfect route completion rates, low infractions per kilometer, and driving scores improving upon the previous best method Kyber-E2E by +17.05 points. PDM-Lite establishes a robust and interpretable baseline on the complex scenarios, enabling high-quality data collection for sample-efficient imitation learning. We release PDM-Lite as an open-source system to accelerate research in this critical domain.},
+  school={University of Tübingen},
+  howpublished={https://github.com/OpenDriveLab/DriveLM/blob/DriveLM-CARLA/pdm_lite/docs/report.pdf},
+  bibtex={title, author, howpublished, year, school},
+}

@@ -1,87 +1,913 @@
-
-    <!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description"
+    content="Personal website of Jens Beißwenger, Machine Learning MSc student at the University of Tübingen">
+
+  <title>Jens Beißwenger - Machine Learning Researcher</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
 
-  <title>Jens Beißwenger</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --text-color: #333333;
+      --bg-color: #f5f5f5;
+      --dark-bg: #1a1a2e;
+      --dark-text: #e0e0e0;
+      --dark-nav: #34495e;
+      --dark-mode-heading: #c8dded;
+    }
+
+    section {
+      scroll-margin-top: 96px; /* Adjust this value based on your header height */
+    }
+
+    #awards .award-header {
+      display: flex;             /* Align date and title horizontally */
+      align-items: baseline
+    }
+
+    #awards .award-title {
+      font-weight: bold;         /* Bold font for the title */
+      margin: 0;                 /* Remove extra space around the title */
+    }
+
+    #awards .award-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      background-color: #ffffff;
+      line-height: 1.5;
+    }
+
+    #awards .award-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    #awards h4 {
+      color: var(--primary-color);
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+    }
+
+    #awards .award-date {
+      font-weight: bold;
+      margin-right: 15px;        /* Add space between the date and title */
+      font-size: 0.9em;          /* Smaller font size for the date */
+      color: var(--secondary-color);
+      margin-bottom: 5px;
+      color: #1f486f
+    }
+
+    #awards .award-organizer {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    #awards .award-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    #awards .award-button {
+      padding: 6px 12px;
+      /* Reduced from 8px 16px */
+      border: 1px solid var(--primary-color);
+      background-color: transparent;
+      color: var(--primary-color);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    #awards .award-button:hover {
+      background-color: var(--primary-color);
+      color: #ffffff;
+    }
+
+    #awards .award-description {
+      display: none;
+      margin-top: 10px;
+      /* Reduced from 15px */
+      font-size: 0.9rem;
+      line-height: 1.4;
+      /* Reduced from 1.5 */
+    }
+
+    body.dark-mode #awards .award-item {
+      background-color: #103252;
+    }
+
+    body.dark-mode #awards h4 {
+      color: var(--dark-mode-heading);
+    }
+
+    body.dark-mode #awards .award-button {
+      border-color: var(--dark-text);
+      color: var(--dark-text);
+    }
+
+    body.dark-mode #awards .award-button:hover {
+      background-color: var(--dark-text);
+      color: var(--dark-bg);
+    }
+
+    body.dark-mode #awards .award-date {
+      color: #81a6c8
+    }
+
+    .futuristic-profile {
+      /* background: #e74141f3; */
+      /* backgrorgb(67, 83, 98)or: #11b71700; */
+      border-radius: 20px;
+      padding: 2rem;
+      /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+      color: var(--text-color);
+    }
+
+    .profile-header {
+      margin-left: auto;
+      margin-right: auto;
+      /*text-align: center;  Center the content */
+    }
+
+    .profile-img {
+      position: relative;
+      max-width: 240px;
+      border-radius: 50%;
+      /* border: 5px solid white;  */
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      margin: 0 auto;
+      /* Center the image */
+      display: block;
+      /* Ensure it takes full width */
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-name {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: var(--primary-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .profile-title {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      color: var(--primary-color);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: var(--accent-color);
+    }
+
+    .about-me p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .futuristic-profile {
+        border-radius: 0;
+      }
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.8;
+      padding-top: 76px;
+    }
+
+    .navbar {
+      background-color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--bg-color) !important;
+    }
+
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.5rem 1rem;
+      color: var(--bg-color) !important;
+    }
+
+    .navbar-nav .nav-item:last-child {
+      margin-left: 10px;
+    }
+
+    #darkModeToggle {
+      background: none;
+      border: none;
+      color: var(--bg-color);
+      font-size: 1.2rem;
+      padding: 0;
+      transition: color 0.3s ease;
+    }
+
+    #darkModeToggle:hover {
+      color: var(--secondary-color);
+    }
+
+    body.dark-mode {
+      color: #d2d8dc;
+      background-color: #051429;
+    }
+
+    body.dark-mode #darkModeToggle {
+      color: var(--dark-text);
+    }
+
+    .dark-mode-toggle {
+      display: none;
+    }
+
+    @media (max-width: 992px) {
+      .navbar-nav {
+        padding-top: 10px;
+      }
+
+      .navbar-nav .nav-item:last-child {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+
+    .contact-links {
+      justify-content: center !important;
+    }
+
+    body.dark-mode .contact-links .btn {
+      color: var(--dark-text);
+      border-color: var(--dark-text);
+    }
+
+    body.dark-mode .contact-links .btn:hover {
+      background-color: var(--dark-text);
+      color: var(--dark-bg);
+    }
+
+    .contact-links .btn {
+      margin: 0.5rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      padding: 0.5rem 1.5rem;
+
+      color: #1c6ca2;
+      border-color: #8d8d8d;
+    }
+
+    .contact-links .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+      color: #1c6ca2;
+      background-color: #bebebe;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+    }
+
+    .publication-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      background-color: #ffffff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .publication-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .author-hyperref {
+      color: #2180c0;
+      text-decoration: none;
+      /* Remove underline */
+    }
+
+    body.dark-mode .author-hyperref {
+      color: var(--dark-text);
+    }
+
+    .publication-img {
+      height: 250px;
+      object-fit: cover;
+      width: 100%;
+      height: auto
+    }
+
+    .publication-links a {
+      color: #2180c0;
+      /* color: var(--secondary-color); */
+      margin-right: 15px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    .dark-mode .publication-links a {
+      color: #4fa3db;
+    }
+
+    .publication-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .hidden-content {
+      background-color: #f1f3f5;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 10px 0;
+      /* Reduce the padding for less space */
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin-bottom: 0;
+    }
+
+    footer .social-icons a {
+      color: white;
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    body.dark-mode .navbar-brand body.dark-mode .navbar-nav .nav-link {
+      color: var(--dark-text) !important;
+    }
+
+    body.dark-mode footer {
+      background-color: #123c5b;
+    }
+
+    body.dark-mode .navbar {
+      background-color: #123c5b;
+    }
+
+    body.dark-mode .publication-item {
+      background-color: #174570;
+    }
+
+    body.dark-mode .hidden-content {
+      background-color: #3a6b9c;
+    }
+
+    body.dark-mode .section-title {
+      color: #bfd1dd
+    }
+
+    body.dark-mode .futuristic-profile {
+      background-color: #45719700;
+      color: #d0e0ed;
+      height: 10px
+    }
+
+    body.dark-mode .profile-name {
+      background-color: #ffffff;
+    }
+
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode h4,
+    body.dark-mode h5 {
+      color: #d0daea;
+    }
+
+    .dark-mode-toggle {
+      top: 30px;
+      right: 20px;
+      z-index: 1050;
+    }
+
+    .dark-mode-toggle button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+
+    .dark-mode-toggle button:hover {
+      background-color: var(--secondary-color);
+      transform: scale(1.1);
+    }
+
+    .dark-mode-toggle button i {
+      font-size: 1.2rem;
+    }
+
+    .copy-bibtex {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .dark-mode .copy-bibtex {
+      background-color: #174570;
+      border-color: #11b71700;
+    }
+
+    #bibtex-content {
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .left-column {
+      position: sticky;
+      top: 76px;
+      /* height of the fixed header */
+      height: calc(100vh - 76px - 20px);
+      /* 76px for header, 56px for footer */
+      overflow-y: hidden;
+      /* Enable scrolling if content overflows */
+      padding: 20px;
+    }
+
+    .right-column {
+      padding: 20px;
+      margin-bottom: 26px;
+    }
+
+    @media (max-width: 768px) {
+
+      .left-column,
+      .right-column {
+        position: static;
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div class="row" style="margin-top: 3em;">
-                    <div class="col-sm-12" style="margin-bottom: 1em;">
-                    <h3 class="display-4" style="text-align: center;"><span style="font-weight: bold;">Jens</span> Beißwenger</h3>
-                    </div>
-                    <br>
-                    <div class="col-md-10" style="">
-                        
-    
-                    </div>
-                    <div class="col-md-2" style="">
-                        <img src="assets/img/profile.jpg" class="img-thumbnail" width="280px" alt="Profile picture">
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 1em;">
-                    <div class="col-sm-12" style="">
-                        <h4>Publications</h4>
-                        <div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3"><img src="assets/img/publications/drivelm.jpg" class="img-fluid img-thumbnail" alt="Project image"></div><div class="col-sm-9"><a href="https://github.com/OpenDriveLab/DriveLM" target="_blank">DriveLM: Driving with Graph Visual Question Answering</a> <br>Chonghao Sima, Katrin Renz, Kashyap Chitta, Li Chen, Hanxue Zhang, Chengen Xie, Jens Beißwenger, Ping Luo, <a href="https://www.cvlibs.net/" target="_blank">Andreas Geiger</a>, Hongyang Li <br><span style="font-style: italic;">Proc. of the European Conf. on Computer Vision (ECCV)</span>, 2024 <br><a href="https://github.com/OpenDriveLab/DriveLM" target="_blank">Project Page</a> / <a href="https://arxiv.org/pdf/2312.14150" target="_blank">Paper</a> /<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsesima2024drivelm" aria-expanded="false" aria-controls="collapseExample" style="margin-left: -6px; margin-top: -2px;">Expand bibtex</button><div class="collapse" id="collapsesima2024drivelm"><div class="card card-body"><pre><code>@InProceedings{sima2024drivelm, 
-	author = {Chonghao Sima and Katrin Renz and Kashyap Chitta and Li Chen and Hanxue Zhang and Chengen Xie and Jens Beißwenger and Ping Luo and Andreas Geiger and Hongyang Li}, 
-	title = {DriveLM: Driving with Graph Visual Question Answering}, 
-	booktitle = {Proc. of the European Conf. on Computer Vision (ECCV)}, 
-	year = {2024}, 
-}</pre></code></div></div> </div> </div> </div><div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3"><img src="assets/img/publications/hidden_biases.jpg" class="img-fluid img-thumbnail" alt="Project image"></div><div class="col-sm-9"><a href="https://github.com/OpenDriveLab/DriveLM/tree/DriveLM-CARLA" target="_blank">Hidden Biases of End-to-End Driving Datasets</a> <br>Julian Zimmerlin, Jens Bei{\ss}wenger, Bernhard Jaeger, <a href="https://www.cvlibs.net/" target="_blank">Andreas Geiger</a>, Kashyap Chitta <br><span style="font-style: italic;">arXiv.org</span>, 2024 <br><a href="https://github.com/OpenDriveLab/DriveLM/tree/DriveLM-CARLA" target="_blank">Project Page</a> / <a href="https://opendrivelab.github.io/Challenge%202024/carla_Tuebingen%20AI.pdf" target="_blank">Paper</a> /<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsezimmerlin2023hidden" aria-expanded="false" aria-controls="collapseExample" style="margin-left: -6px; margin-top: -2px;">Expand bibtex</button><div class="collapse" id="collapsezimmerlin2023hidden"><div class="card card-body"><pre><code>@InProceedings{zimmerlin2023hidden, 
-	author = {Julian Zimmerlin and Jens Bei{\ss}wenger and Bernhard Jaeger and Andreas Geiger and Kashyap Chitta}, 
-	title = {Hidden Biases of End-to-End Driving Datasets}, 
-	booktitle = {arXiv.org}, 
-	year = {2024}, 
-}</pre></code></div></div> </div> </div> </div><div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3"><img src="assets/img/publications/pdm_lite.jpg" class="img-fluid img-thumbnail" alt="Project image"></div><div class="col-sm-9"><a href="https://github.com/OpenDriveLab/DriveLM/tree/DriveLM-CARLA/pdm_lite" target="_blank">{PDM-Lite}: A Rule-Based Planner for CARLA Leaderboard 2.0</a> <br>Jens Bei{\ss}wenger <br><span style="font-style: italic;">arXiv.org</span>, 2024 <br><a href="https://github.com/OpenDriveLab/DriveLM/tree/DriveLM-CARLA/pdm_lite" target="_blank">Project Page</a> / <a href="https://github.com/OpenDriveLab/DriveLM/blob/DriveLM-CARLA/pdm_lite/docs/report.pdf" target="_blank">Paper</a> /<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseBeißwenger2024PdmLite" aria-expanded="false" aria-controls="collapseExample" style="margin-left: -6px; margin-top: -2px;">Expand bibtex</button><div class="collapse" id="collapseBeißwenger2024PdmLite"><div class="card card-body"><pre><code>@InProceedings{Beißwenger2024PdmLite, 
-	author = {Jens Bei{\ss}wenger}, 
-	title = {{PDM-Lite}: A Rule-Based Planner for CARLA Leaderboard 2.0}, 
-	booktitle = {arXiv.org}, 
-	year = {2024}, 
-}</pre></code></div></div> </div> </div> </div>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 3em;">
-                    <div class="col-sm-12" style="">
-                        <h4>Talks</h4>
-                        
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 3em; margin-bottom: 1em;">
-                    
-    
-                </div>
+      <a class="navbar-brand" href="#awards">Jens Beißwenger</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="#awards">Awards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#publications">Publications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#homepage_templage">Design</a>
+          </li>
+          <li class="nav-item">
+            <button id="darkModeToggle" class="btn btn-link nav-link" aria-label="Toggle dark mode">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Left Column (Sticky) -->
+      <div class="col-md-4 left-column">
+        <!-- Profile Section -->
+        <section id="about" class="futuristic-profile">
+          <div class="profile-header">
+            <div class="col-md-12 col-lg-12 text-center mb-1">
+              <img src="assets/profile.jpg" class="profile-img img-fluid mb-3" alt="Jens Beißwenger">
             </div>
-            <div class="col-md-1"></div>
-        </div?
+            <h1 class="profile-name">
+              Jens Beißwenger
+            </h1>
+            <p class="profile-title">
+              Machine Learning MSc student at the University of Tübingen
+            </p>
+          </div>
+
+          <div class="contact-links d-flex flex-wrap justify-content-center">
+            <a href="assets/CV_Jens Beisswenger.pdf" target="_blank" class="btn btn-outline-primary">
+              <i class="fa fa-address-card" aria-hidden="true"></i> CV
+            </a>
+            <a href="mailto:jensbeiswenger@gmail.com" class="btn btn-outline-primary">
+              <i class="far fa-envelope-open" aria-hidden="true"></i> Mail
+            </a>
+            <a href="https://scholar.google.de/citations?user=bnJaIP4AAAAJ&hl=de" target="_blank"
+              class="btn btn-outline-primary">
+              <i class="fa-solid fa-book" aria-hidden="true"></i> Scholar
+            </a>
+            <a href="https://github.com/j-beisswenger" target="_blank" class="btn btn-outline-primary">
+              <i class="fab fa-github" aria-hidden="true"></i> Github
+            </a>
+            <a href="https://de.linkedin.com/in/jens-bei%C3%9Fwenger-a82430258" target="_blank" class="btn btn-outline-primary">
+              <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
+            </a>
+            <a href="https://www.youtube.com/@jens.beisswenger/videos" target="_blank" class="btn btn-outline-primary">
+              <i class="fab fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </div>
+
+          <!-- Bio & Interests -->
+          <section class="about-me">
+            <h2 class="section-title">About Me</h2>
+            <p>I'm a Machine Learning MSc student and research assistant in the <a href="https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" class="author-hyperref">Autonomous Vision Group (AVG)</a> at the University of Tübingen, with a BSc in Computer Science from <a href="https://www.kit.edu/" class="author-hyperref">Karlsruhe Institut of Technology (KIT)</a> in 2022. My research focuses on End-to-End Autonomous Driving Systems, with interests in computer vision and Large Language Models (LLMs) as they are an essential components for their design. Currently, I'm working on my master's thesis, exploring Model-based Reinforcement Learning for the CARLA Leaderboard 2.0, under the supervision of <a href="https://www.cvlibs.net/" class="author-hyperref">Andreas Geiger</a>, <a href="https://kashyap7x.github.io/" class="author-hyperref">Kashyap Chitta</a>, and <a href="https://kait0.github.io/" class="author-hyperref">Bernhard Jaeger</a>.</p>
+          </section>
+          </section>
+      </div>
+      <!-- Right column remains unchanged -->
+      <!-- </div> -->
+      <!-- </div> -->
+
+      <!-- Right Column (Scrollable) -->
+      <div class="col-md-8 right-column">
+        <!-- Awards Section -->
+
+        <section id="awards">
+          <h2 class="section-title mb-4">Awards</h2>
+          
+                    <div class="award-item row mb-3 p-2 rounded">
+                        <div class="award-header">
+                            <p class="award-date">June 2024</p>
+                            <h4 class="award-title">2nd place, CARLA Autonomous Driving Challenge</h4>
+                        </div>
+                            <p class="award-organizer">OpenDriveLab, CVPR 2024 Workshop</p>
+                            <div class="publication-links">
+                            <a href="https://opendrivelab.com/challenge2024/#carla" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
+                            
+                            <a href="#" onclick="toggleDescription(this)"><i class="fas fa-book-open"></i> Description</a>
+                        </div>
+                        
+                        <p class="award-description">
+                        Developed PDM-Lite, a rule-based privileged expert for dataset collection in the CARLA Autonomous Driving Challenge on Leaderboard 2.0. Contributed to an end-to-end system earning Honorable Runner-Up. PDM-Lite also aided the winning team's Innovation Award and Outstanding Champion title.
+                        </p>
+                    
+                    </div>
+                    
+                    <div class="award-item row mb-3 p-2 rounded">
+                        <div class="award-header">
+                            <p class="award-date">August 2023</p>
+                            <h4 class="award-title">1st Place, Reinforcement Learning Challenge</h4>
+                        </div>
+                            <p class="award-organizer">Department for Distributed Intelligence / Autonomous Learning, Eberhard Karls Universität Tübingen</p>
+                            <div class="publication-links">
+                            
+                            <a href="https://github.com/j-beisswenger/AlphaPuck" target="_blank"><i class="fas fa-code"></i> Code</a>
+                            <a href="#" onclick="toggleDescription(this)"><i class="fas fa-book-open"></i> Description</a>
+                        </div>
+                        
+                        <p class="award-description">
+                        Development of a Reinforcement Learning Agent to Compete Against Other Students' Agents in an OpenAI Gym Hockey Environment on achieved 1st place among 89 participants.
+                        </p>
+                    
+                    </div>
+                    
+                    <div class="award-item row mb-3 p-2 rounded">
+                        <div class="award-header">
+                            <p class="award-date">January 2023</p>
+                            <h4 class="award-title">3rd Place, Self-Driving Cars Challenge</h4>
+                        </div>
+                            <p class="award-organizer">Autonomous Vision Group, Eberhard Karls Universität Tübingen</p>
+                            <div class="publication-links">
+                            
+                            
+                            <a href="#" onclick="toggleDescription(this)"><i class="fas fa-book-open"></i> Description</a>
+                        </div>
+                        
+                        <p class="award-description">
+                        Development of a Modular Pipeline for the CarRacing Environment in OpenAI Gym.
+                        </p>
+                    
+                    </div>
+                    
+          
+          
+
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications">
+          <h2 class="section-title mb-4">Publications</h2>
+          
+                    <div class="publication-item row mb-4 p-4 rounded">
+                        <div class="col-md-3">
+                            <img src="assets/publications/drivelm.jpg" class="publication-img img-fluid rounded">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 class="mt-3 mt-md-0 mb-3">DriveLM: Driving with Graph Visual Question Answering</h3>
+                            <span class="badge bg-danger mb-3">Oral Presentation</span>
+                            
+                        <p><strong>Authors:</strong> <a href="https://github.com/ChonghaoSima" class="author-hyperref">Chonghao Sima</a>, <a href="https://www.katrinrenz.de/" class="author-hyperref">Katrin Renz</a>, <a href="https://kashyap7x.github.io/" class="author-hyperref">Kashyap Chitta</a>, <a href="https://www.linkedin.com/in/li-chen-30b256167/" class="author-hyperref">Li Chen</a>, <a href="https://scholar.google.co.jp/citations?user=vy5r8rMAAAAJ&hl=en" class="author-hyperref">Hanxue Zhang</a>, <a href="https://scholar.google.com/citations?user=-Sk1x_gAAAAJ&hl=zh-CN" class="author-hyperref">Chengen Xie</a>, <strong>Jens Beißwenger</strong>, <a href="http://luoping.me/" class="author-hyperref">Ping Luo</a>, <a href="https://www.cvlibs.net/" class="author-hyperref">Andreas Geiger</a>, <a href="https://lihongyang.info/" class="author-hyperref">Hongyang Li</a></p>
+                        
+                            <p><i>European Conference on Computer Vision (ECCV), 2024</i></p>
+                            
+                            <div class="publication-links">
+                                <a href="https://arxiv.org/pdf/2312.14150" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                                <a href="https://opendrivelab.com/DriveLM/" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
+                                <a href="https://github.com/OpenDriveLab/DriveLM" target="_blank"><i class="fas fa-code"></i> Code</a>
+                                
+                                <a href="#" class="toggle-abstract" onclick="toggleAbstract(event)"><i class="fas fa-book-open"></i> Abstract</a>
+                                <a href="#" id="toggle-bibtex" onclick="toggleBibtex(event)"><i class="fas fa-quote-right"></i> Bibtex</a>
+                            </div>
+
+                            <div class="hidden-content abstract-section" style="display: none;">
+                                <p>We study how vision-language models (VLMs) trained on web-scale data can be integrated into end-to-end driving systems to boost generalization and enable interactivity with human users. While recent approaches adapt VLMs to driving via single-round visual question answering (VQA), human drivers reason about decisions in multiple steps. Starting from the localization of key objects, humans estimate object interactions before taking actions. The key insight is that with our proposed task, Graph VQA, where we model graph-structured reasoning through perception, prediction and planning question-answer pairs, we obtain a suitable proxy task to mimic the human reasoning process. We instantiate datasets (DriveLM-Data) built upon nuScenes and CARLA, and propose a VLM-based baseline approach (DriveLM-Agent) for jointly performing Graph VQA and end-to-end driving. The experiments demonstrate that Graph VQA provides a simple, principled framework for reasoning about a driving scene, and DriveLM-Data provides a challenging benchmark for this task. Our DriveLM-Agent baseline performs end-to-end autonomous driving competitively in comparison to state-of-the-art driving-specific architectures. Notably, its benefits are pronounced when it is evaluated zero-shot on unseen sensor configurations. Our question-wise ablation study shows that the performance gain comes from the rich annotation of prediction and planning QA pairs in the graph structure. All data, models and an official evaluation server are available at https://github.com/OpenDriveLab/DriveLM.</p>
+                            </div>
+
+                            <div class="hidden-content bibtex-section" style="display: none;">
+                                <div class="bibtex-header">
+                                <pre class="bibtex-content">
+@inproceedings{sima2024drivelm,
+    title = {DriveLM: Driving with Graph Visual Question Answering}
+    author = {Chonghao Sima, Katrin Renz, Kashyap Chitta, Li Chen, Hanxue Zhang, Chengen Xie, Jens Beißwenger, Ping Luo, Andreas Geiger, Hongyang Li}
+    booktitle = {European Conference on Computer Vision (ECCV)}
+    year = {2024}
+}</pre>
+                                <button class="btn btn-secondary btn-sm copy-bibtex" onclick="copyBibtex(this)">Copy Bibtex</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item row mb-4 p-4 rounded">
+                        <div class="col-md-3">
+                            <img src="assets/publications/hidden_biases.jpg" class="publication-img img-fluid rounded">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 class="mt-3 mt-md-0 mb-3">Hidden Biases of End-to-End Driving Datasets</h3>
+                            <span class="badge bg-danger mb-3">Honorable Runner-Up</span>
+                            
+                        <p><strong>Authors:</strong> <a href="https://scholar.google.com/citations?user=xTcEqWcAAAAJ&hl=en" class="author-hyperref">Julian Zimmerlin</a>, <strong>Jens Beißwenger</strong>, <a href="https://kait0.github.io/" class="author-hyperref">Bernhard Jaeger</a>, <a href="https://www.cvlibs.net/" class="author-hyperref">Andreas Geiger</a>, <a href="https://kashyap7x.github.io/" class="author-hyperref">Kashyap Chitta</a></p>
+                        
+                            <p><i>arXiv.org, 2024</i></p>
+                            
+                            <div class="publication-links">
+                                <a href="https://opendrivelab.github.io/Challenge%202024/carla_Tuebingen%20AI.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                                
+                                
+                                
+                                <a href="#" class="toggle-abstract" onclick="toggleAbstract(event)"><i class="fas fa-book-open"></i> Abstract</a>
+                                <a href="#" id="toggle-bibtex" onclick="toggleBibtex(event)"><i class="fas fa-quote-right"></i> Bibtex</a>
+                            </div>
+
+                            <div class="hidden-content abstract-section" style="display: none;">
+                                <p>End-to-end driving systems have made rapid progress, but have so far not been applied to the challenging new CARLA Leaderboard 2.0. Furthermore, while there is a large body of literature on end-to-end architectures and training strategies, the impact of the training dataset is often overlooked. In this work, we make a first attempt at end-to-end driving for Leaderboard 2.0. Instead of investigating architectures, we systematically analyze the training dataset, leading to new insights: (1) Expert style significantly affects downstream policy performance. (2) On complex driving datasets, frames should not be weighted based on simplistic criteria such as class frequencies. (3) Instead, estimating whether a frame changes the target labels compared to previous frames can reduce dataset size without losing important information. By incorporating these findings, our model ranks first and second respectively on the map and sensors tracks of the 2024 CARLA Challenge.</p>
+                            </div>
+
+                            <div class="hidden-content bibtex-section" style="display: none;">
+                                <div class="bibtex-header">
+                                <pre class="bibtex-content">
+@techreport{zimmerlin2023hidden,
+    title = {Hidden Biases of End-to-End Driving Datasets}
+    author = {Julian Zimmerlin, Jens Beißwenger, Bernhard Jaeger, Andreas Geiger, Kashyap Chitta}
+    year = {2024}
+}</pre>
+                                <button class="btn btn-secondary btn-sm copy-bibtex" onclick="copyBibtex(this)">Copy Bibtex</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item row mb-4 p-4 rounded">
+                        <div class="col-md-3">
+                            <img src="assets/publications/pdm_lite.jpg" class="publication-img img-fluid rounded">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 class="mt-3 mt-md-0 mb-3">PDM-Lite: A Rule-Based Planner for CARLA Leaderboard 2.0</h3>
+                            
+                            
+                        <p><strong>Authors:</strong> <strong>Jens Beißwenger</strong></p>
+                        
+                            <p><i>2024</i></p>
+                            
+                            <div class="publication-links">
+                                <a href="https://github.com/OpenDriveLab/DriveLM/blob/DriveLM-CARLA/pdm_lite/docs/report.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                                
+                                
+                                <a href="https://www.youtube.com/watch?v=uic3xwcOQ9w" target="_blank"><i class="fab fa-youtube"></i> Video</a>
+                                <a href="#" class="toggle-abstract" onclick="toggleAbstract(event)"><i class="fas fa-book-open"></i> Abstract</a>
+                                <a href="#" id="toggle-bibtex" onclick="toggleBibtex(event)"><i class="fas fa-quote-right"></i> Bibtex</a>
+                            </div>
+
+                            <div class="hidden-content abstract-section" style="display: none;">
+                                <p>Autonomous urban driving exposes numerous corner cases that previous planning approaches struggle to handle robustly. The CARLA Leaderboard 2.0 simulator introduces 38 complex scenarios involving high-speed highway driving, traffic violations, and dynamic obstacles, posing a demanding closed-loop benchmark for autonomous systems. We propose PDM-Lite, the first rule-based expert system to successfully navigate all scenarios in this realistic environment. Integrating components like the Intelligent Driver Model, kinematic bicycle predictions, and dynamic lane changing for obstacle handling, PDM-Lite demonstrates state-of-the-art performance through extensive evaluations. It achieves near-perfect route completion rates, low infractions per kilometer, and driving scores improving upon the previous best method Kyber-E2E by +17.05 points. PDM-Lite establishes a robust and interpretable baseline on the complex scenarios, enabling high-quality data collection for sample-efficient imitation learning. We release PDM-Lite as an open-source system to accelerate research in this critical domain.</p>
+                            </div>
+
+                            <div class="hidden-content bibtex-section" style="display: none;">
+                                <div class="bibtex-header">
+                                <pre class="bibtex-content">
+@misc{Beißwenger2024PdmLite,
+    title = {PDM-Lite: A Rule-Based Planner for CARLA Leaderboard 2.0}
+    author = {Jens Beißwenger}
+    howpublished = {https://github.com/OpenDriveLab/DriveLM/blob/DriveLM-CARLA/pdm_lite/docs/report.pdf}
+    year = {2024}
+    school = {University of Tübingen}
+}</pre>
+                                <button class="btn btn-secondary btn-sm copy-bibtex" onclick="copyBibtex(this)">Copy Bibtex</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+        </section>
+
+        <section id="homepage_templage">
+          <h2 class="section-title mb-4">Homepage Template</h2>
+          <p>This website's design is inspired by <a href="https://m-niemeyer.github.io/" target="_blank"
+              class="author-hyperref">Michael
+              Niemeyer's personal site</a>. Checkout his <a href="https://github.com/m-niemeyer/m-niemeyer.github.io"
+              target="_blank" class="author-hyperref">GitHub</a>!</p>
+        </section>
+      </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-2">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+        </div>
+        <div class="col-md-6 text-center text-md-end social-icons">
+          <!-- <a href="#" class="text-white"><i class="fab fa-twitter"></i></a> -->
+          <a href="https://github.com/j-beisswenger" class="text-white"><i class="fab fa-github"></i></a>
+          <a href="https://de.linkedin.com/in/jens-bei%C3%9Fwenger-a82430258" class="text-white"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dark Mode Toggle -->
+  <div class="dark-mode-toggle">
+    <button id="darkModeToggle" class="btn" aria-label="Toggle dark mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      const body = document.body;
+      const icon = darkModeToggle.querySelector('i');
+
+      // Check for saved theme preference or default to light mode
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        icon.classList.replace('fa-moon', 'fa-sun');
+      }
+
+      darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+
+        if (isDarkMode) {
+          icon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+          icon.classList.replace('fa-sun', 'fa-moon');
+        }
+      });
+    });
+
+    function toggleAbstract(event) {
+      event.preventDefault();
+      const publicationItem = event.target.closest('.publication-item');
+      const abstractSection = publicationItem.querySelector('.abstract-section');
+      abstractSection.style.display = abstractSection.style.display === 'none' ? 'block' : 'none';
+      const bibtexSection = publicationItem.querySelector('.bibtex-section');
+
+      if (abstractSection.style.display === 'block') {
+        bibtexSection.style.display = 'none';
+      }
+    }
+
+    function toggleBibtex(event) {
+      event.preventDefault();
+      const publicationItem = event.target.closest('.publication-item');
+      const bibtexSection = publicationItem.querySelector('.bibtex-section');
+      bibtexSection.style.display = bibtexSection.style.display === 'none' ? 'block' : 'none';
+      const abstractSection = publicationItem.querySelector('.abstract-section');
+
+      if (bibtexSection.style.display === 'block') {
+        abstractSection.style.display = 'none';
+      }
+    }
+
+    function copyBibtex(button) {
+      const bibtexContent = button.previousElementSibling.textContent;
+      navigator.clipboard.writeText(bibtexContent)
+        .then(() => {
+          button.textContent = 'Copied!';
+          setTimeout(() => {
+            button.textContent = 'Copy Bibtex';
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+        });
+    }
+
+    function toggleDescription(button) {
+      const description = button.parentElement.nextElementSibling;
+      if (description.style.display === 'none' || description.style.display === '') {
+        description.style.display = 'block';
+      } else {
+        description.style.display = 'none';
+      }
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
 </body>
 
 </html>
-    
