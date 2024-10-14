@@ -626,7 +626,9 @@ class WebsiteCreator:
       }}
 
       .about-me-header,
-      #awards .awards-header {{
+      #awards .awards-header,
+      #publications .publciations-header,
+      #homepage_template .homepage-template-header {{
         font-size: 4vmin;
       }}
 
