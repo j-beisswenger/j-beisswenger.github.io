@@ -134,7 +134,7 @@ class WebsiteCreator:
                 if 'abstract' in entry:
                     abstract_button = f"""<a href="#" class="toggle-abstract" onclick="toggleAbstract(event)"><i class="fas fa-book-open"></i> Abstract</a>"""
                     abstract = entry['abstract']
-                    
+
                 self.publications += fr"""
                   <div class="publication-item row mb-3 p-2">
                     <div class="col-md-3">
@@ -176,7 +176,7 @@ class WebsiteCreator:
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="Personal website of {self.name}, {self.title}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{self.name} - Machine Learning Researcher</title>
 
   <!-- Bootstrap CSS -->
@@ -211,7 +211,7 @@ class WebsiteCreator:
     }}
 
     body.dark-mode {{
-      background-color: #0d2135;
+      background-color: #152331;
       --primary-color: #f7f7f7;
     }}
 
@@ -602,12 +602,12 @@ class WebsiteCreator:
         flex-direction: column;
         height: auto;
         margin-top: 58px;
-        overflow-y: auto;
       }}
 
       .left-column,
       .right-column {{
         width: 100%;
+        /* Make both columns take full width */
         padding: 1rem;
       }}
 
@@ -649,7 +649,6 @@ class WebsiteCreator:
 
       body {{
         overflow-y: auto;
-        /* Allow scrolling on the body */
       }}
 
       .about-me-header::after {{
