@@ -58,20 +58,20 @@ class WebsiteCreator:
                         {award['Description']}
                         </p>
                     """
-
+                
                 self.awards += f"""
-                    <div class="award-item row mb-3 p-2 rounded">
-                        <div class="award-header">
-                            {data['Date']}
-                            {data['Title']}
-                        </div>
-                            {data['Organizer']}
-                            <div class="publication-links">
-                            {data['Project Page']}
-                            {data['Code']}
-                            {description_button}
-                        </div>
-                        {description}
+                    <div class="award-item row mb-3 p-2">
+                      <div class="award-header">
+                        {data['Date']}
+                        {data['Title']}
+                      </div>
+                        {data['Organizer']}
+                        <div class="publication-links">
+                        {data['Project Page']}
+                        {data['Code']}
+                        {description_button}
+                      </div>
+                      {description}
                     </div>
                     """
 
@@ -134,54 +134,50 @@ class WebsiteCreator:
                 if 'abstract' in entry:
                     abstract_button = f"""<a href="#" class="toggle-abstract" onclick="toggleAbstract(event)"><i class="fas fa-book-open"></i> Abstract</a>"""
                     abstract = entry['abstract']
-
+                    
                 self.publications += fr"""
-                    <div class="publication-item row mb-4 p-4 rounded">
-                        <div class="col-md-3">
-                            {data['img']}
-                        </div>
-                        <div class="col-md-9">
-                            {data['title']}
-                            {data['award']}
-                            {data['author']}
-                            {data['booktitle']}
-                            
-                            <div class="publication-links">
-                                {data['pdf']}
-                                {data['html']}
-                                {data['code']}
-                                {data['video']}
-                                {abstract_button}
-                                {bibtex_button}
-                            </div>
-
-                            <div class="hidden-content abstract-section" style="display: none;">
-                                <p>{abstract}</p>
-                            </div>
-
-                            <div class="hidden-content bibtex-section" style="display: none;">
-                                <div class="bibtex-header">
-                                <pre class="bibtex-content">
-{bibtex}</pre>
-                                <button class="btn btn-secondary btn-sm copy-bibtex" onclick="copyBibtex(this)">Copy Bibtex</button>
-                                </div>
-                            </div>
-                        </div>
+                  <div class="publication-item row mb-3 p-2">
+                    <div class="col-md-3">
+                      {data['img']}
                     </div>
-                    """
+                    <div class="col-md-9">
+                          {data['title']}
+                          {data['award']}
+                          {data['author']}
+                          {data['booktitle']}
+
+                      <div class="publication-links">
+                          {data['pdf']}
+                          {data['html']}
+                          {data['code']}
+                          {data['video']}
+                          {abstract_button}
+                          {bibtex_button}
+                      </div>
+
+                      <div class="hidden-content abstract-section" style="display: none;">
+                        <p>{abstract}</p>
+                      </div>
+
+                      <div class="hidden-content bibtex-section" style="display: none;">
+                        <div class="bibtex-header">
+                          <pre class="bibtex-content">
+{bibtex}</pre>
+                          <button class="btn btn-secondary btn-sm copy-bibtex" onclick="copyBibtex(this)">Copy Bibtex</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  """
 
     def _generate_website(self):
-        return fr"""<!doctype html>
+        return fr"""<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description"
-    content="Personal website of {self.name}, {self.title}">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="Personal website of {self.name}, {self.title}">
   <title>{self.name} - Machine Learning Researcher</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
@@ -195,264 +191,28 @@ class WebsiteCreator:
   <style>
     :root {{
       --primary-color: #2c3e50;
-      --secondary-color: #3498db;
-      --accent-color: #e74c3c;
-      --text-color: #333333;
-      --bg-color: #f5f5f5;
-      --dark-bg: #1a1a2e;
-      --dark-text: #e0e0e0;
-      --dark-nav: #34495e;
-      --dark-mode-heading: #c8dded;
     }}
 
-    section {{
-      scroll-margin-top: 96px; /* Adjust this value based on your header height */
-    }}
-
-    #awards .award-header {{
-      display: flex;             /* Align date and title horizontally */
-      align-items: baseline
-    }}
-
-    #awards .award-title {{
-      font-weight: bold;         /* Bold font for the title */
-      margin: 0;                 /* Remove extra space around the title */
-    }}
-
-    #awards .award-item {{
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: none;
-      border-radius: 15px;
-      overflow: hidden;
-      background-color: #ffffff;
-      line-height: 1.5;
-    }}
-
-    #awards .award-item:hover {{
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }}
-
-    #awards h4 {{
-      color: var(--primary-color);
-      margin-bottom: 5px;
-      font-size: 1.2rem;
-    }}
-
-    #awards .award-date {{
-      font-weight: bold;
-      margin-right: 15px;        /* Add space between the date and title */
-      font-size: 0.9em;          /* Smaller font size for the date */
-      color: var(--secondary-color);
-      margin-bottom: 5px;
-      color: #1f486f
-    }}
-
-    #awards .award-organizer {{
-      font-style: italic;
-      margin-bottom: 10px;
-    }}
-
-    #awards .award-buttons {{
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }}
-
-    #awards .award-button {{
-      padding: 6px 12px;
-      /* Reduced from 8px 16px */
-      border: 1px solid var(--primary-color);
-      background-color: transparent;
-      color: var(--primary-color);
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }}
-
-    #awards .award-button:hover {{
-      background-color: var(--primary-color);
-      color: #ffffff;
-    }}
-
-    #awards .award-description {{
-      display: none;
-      margin-top: 10px;
-      /* Reduced from 15px */
-      font-size: 0.9rem;
-      line-height: 1.4;
-      /* Reduced from 1.5 */
-    }}
-
-    body.dark-mode #awards .award-item {{
-      background-color: #103252;
-    }}
-
-    body.dark-mode #awards h4 {{
-      color: var(--dark-mode-heading);
-    }}
-
-    body.dark-mode #awards .award-button {{
-      border-color: var(--dark-text);
-      color: var(--dark-text);
-    }}
-
-    body.dark-mode #awards .award-button:hover {{
-      background-color: var(--dark-text);
-      color: var(--dark-bg);
-    }}
-
-    body.dark-mode #awards .award-date {{
-      color: #81a6c8
-    }}
-
-    .futuristic-profile {{
-      /* background: #e74141f3; */
-      /* backgrorgb(67, 83, 98)or: #11b71700; */
-      border-radius: 20px;
-      padding: 2rem;
-      /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
-      color: var(--text-color);
-    }}
-
-    .profile-header {{
-      margin-left: auto;
-      margin-right: auto;
-      /*text-align: center;  Center the content */
-    }}
-
-    .profile-img {{
-      position: relative;
-      max-width: 240px;
-      border-radius: 50%;
-      /* border: 5px solid white;  */
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      margin: 0 auto;
-      /* Center the image */
-      display: block;
-      /* Ensure it takes full width */
-    }}
-
-    .profile-img:hover {{
-      transform: scale(1.05);
-    }}
-
-    .profile-name {{
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      background: var(--primary-color);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }}
-
-    .profile-title {{
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }}
-
-    .section-title {{
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-      color: var(--primary-color);
-    }}
-
-    .section-title::after {{
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 50%;
-      height: 3px;
-      background: var(--accent-color);
-    }}
-
-    .about-me p {{
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }}
-
-    @media (max-width: 768px) {{
-      .futuristic-profile {{
-        border-radius: 0;
-      }}
-    }}
-
-    body {{
+    body,
+    html {{
       font-family: 'Roboto', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s ease, color 0.3s ease;
-      line-height: 1.8;
-      padding-top: 76px;
-    }}
-
-    .navbar {{
-      background-color: var(--primary-color);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 1rem 0;
-    }}
-
-    .navbar-brand {{
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--bg-color) !important;
-    }}
-
-    .navbar-nav .nav-link {{
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 0.5rem 1rem;
-      color: var(--bg-color) !important;
-    }}
-
-    .navbar-nav .nav-item:last-child {{
-      margin-left: 10px;
-    }}
-
-    #darkModeToggle {{
-      background: none;
-      border: none;
-      color: var(--bg-color);
-      font-size: 1.2rem;
+      margin: 0;
       padding: 0;
-      transition: color 0.3s ease;
-    }}
-
-    #darkModeToggle:hover {{
-      color: var(--secondary-color);
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      --accent-color: #e74c3c;
+      --dark-nav: #34495e;
+      --bg-color: #f5f5f5;
+      --header-color: #2d3e4f;
+      --dark-text: #e0e0e0;
+      background-color: var(--bg-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }}
 
     body.dark-mode {{
-      color: #d2d8dc;
-      background-color: #051429;
-    }}
-
-    body.dark-mode #darkModeToggle {{
-      color: var(--dark-text);
-    }}
-
-    .dark-mode-toggle {{
-      display: none;
-    }}
-
-    @media (max-width: 992px) {{
-      .navbar-nav {{
-        padding-top: 10px;
-      }}
-
-      .navbar-nav .nav-item:last-child {{
-        margin-left: 0;
-        margin-top: 10px;
-      }}
-    }}
-
-    .contact-links {{
-      justify-content: center !important;
+      background-color: #0d2135;
+      --primary-color: #f7f7f7;
     }}
 
     body.dark-mode .contact-links .btn {{
@@ -465,103 +225,370 @@ class WebsiteCreator:
       color: var(--dark-bg);
     }}
 
-    .contact-links .btn {{
-      margin: 0.5rem;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      padding: 0.5rem 1.5rem;
-
-      color: #1c6ca2;
-      border-color: #8d8d8d;
+    .navbar a {{
+      color: #f2f2f2;
     }}
 
-    .contact-links .btn:hover {{
-      transform: translateY(-3px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-
-      color: #1c6ca2;
-      background-color: #bebebe;
+    .main {{
+      display: flex;
+      height: calc(100vh - 103px);
+      margin-top: 58px;
     }}
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {{
-      font-family: 'Playfair Display', serif;
-      color: var(--primary-color);
-    }}
-
-    .publication-item {{
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: none;
-      border-radius: 15px;
+    .left-column {{
+      display: flex;
+      flex-direction: column;
+      width: 33%;
       overflow: hidden;
-      background-color: #ffffff;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      padding: 2.0rem 2.0rem;
     }}
 
-    .publication-item:hover {{
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    .navbar {{
+      background-color: var(--dark-nav);
+      z-index: 1000;
+      height: 58px;
+      max-height: 56px;
     }}
 
-    .author-hyperref {{
-      color: #2180c0;
-      text-decoration: none;
-      /* Remove underline */
+    .navbar-brand {{
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--bg-color) !important;
     }}
 
-    body.dark-mode .author-hyperref {{
-      color: var(--dark-text);
+    .navbar-nav .nav-link {{
+      font-family: 'Roboto', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.5rem 1rem;
+      color: var(--bg-color) !important;
     }}
 
-    .publication-img {{
-      height: 250px;
-      object-fit: cover;
-      width: 100%;
-      height: auto
+    .award-header {{
+      display: flex;
+      align-items: baseline
+    }}
+
+    #awards h4 {{
+      color: var(--primary-color);
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+    }}
+
+    #awards .award-date {{
+      font-weight: bold;
+      margin-right: 15px;
+      font-size: 0.9em;
+      color: #1f486f;
+      margin-bottom: 5px;
+    }}
+
+    #awards .award-organizer {{
+      font-style: italic;
+      margin-bottom: 10px;
+      color: var(--primary-color)
+    }}
+
+    #awards .award-buttons {{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }}
+
+    #awards .award-button {{
+      padding: 6px 12px;
+      border: 1px solid var(--primary-color);
+      background-color: transparent;
+      color: var(--primary-color);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }}
 
     .publication-links a {{
       color: #2180c0;
-      /* color: var(--secondary-color); */
       margin-right: 15px;
       text-decoration: none;
       transition: color 0.3s ease;
       font-weight: 500;
     }}
 
-    .dark-mode .publication-links a {{
-      color: #4fa3db;
+    body.dark-mode .publication-links a {{
+      color: #66b3e7;
     }}
 
     .publication-links a:hover {{
       color: var(--accent-color);
     }}
 
+    #awards .award-button:hover {{
+      background-color: var(--primary-color);
+      color: #ffffff;
+    }}
+
+    #awards .award-description {{
+      color: var(--primary-color);
+      display: none;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }}
+
+    .award-title {{
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      margin: 0;
+    }}
+
     .hidden-content {{
       background-color: #f1f3f5;
+      color: var(--primary-color);
       border-radius: 10px;
       padding: 1.5rem;
       margin-top: 1rem;
       font-size: 0.9rem;
     }}
 
-    footer {{
-      background-color: var(--primary-color);
-      color: white;
-      padding: 10px 0;
-      /* Reduce the padding for less space */
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      font-size: 0.9rem;
+    body.dark-mode .hidden-content{{
+      background-color: #0d2135;
     }}
 
-    footer p {{
-      margin-bottom: 0;
+    #awards .award-item {{
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      overflow: hidden;
+      background-color: #ffffff;
+      line-height: 1.5;
+      border-radius: 10px;
+      margin-right: 1rem;
+    }}
+
+    body.dark-mode #awards .award-item {{
+      background-color: #1d3954;
+    }}
+
+    body.dark-mode #publications .publication-item {{
+      background-color: #1d3954;
+      color: var(--primary-color);
+    }}
+
+    #awards .award-item:hover {{
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }}
+
+    .navbar-nav .nav-item:last-child {{
+      margin-left: 10px;
+    }}
+
+    #darkModeToggle {{
+      background: none;
+      border: none;
+      color: var(--bg-color);
+      font-size: 1.2rem;
+      padding: 0;
+      transition: all 0.3s ease;
+    }}
+
+    .profile-img {{
+      height: 30%;
+      width: auto;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      margin: 0 auto;
+    }}
+
+    .about-me {{
+      color: var(--primary-color);
+      margin: 0;
+      padding: 0;
+      flex-grow: 1;
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      font-size: 1.7vmin;
+      transition: all 0.3s ease;
+    }}
+
+    .homepage-template {{
+      color: var(--primary-color);
+    }}
+
+    .profile-img:hover {{
+      transform: scale(1.05);
+    }}
+
+    .profile-header {{
+      margin-top: 1rem;
+      flex-grow: 1;
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      font-size: 4vmin;
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      color: var(--header-color);
+      margin: 0;
+      padding: 0;
+    }}
+
+    body.dark-mode .profile-header {{
+      color: var(--dark-text);
+    }}
+
+    .about-me-header {{
+      flex-grow: 1;
+      position: relative;
+      display: inline-block;
+      font-size: 3vmin;
+      font-family: 'Playfair Display', serif;
+      color: var(--header-color);
+      margin-bottom: 10px;
+    }}
+
+    .about-me-header::after {{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4vmin;
+      width: 12%;
+      height: 3px;
+      background-color: var(--accent-color);
+    }}
+
+    #publications .publciations-header,
+    #awards .awards-header,
+    #homepage_template .homepage-template-header {{
+      position: relative;
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+      font-size: 3vmin;
+      color: var(--header-color)
+    }}
+
+    body.dark-mode .about-me-header,
+    body.dark-mode #publications .publciations-header,
+    body.dark-mode #awards .awards-header,
+    body.dark-mode #homepage_template .homepage-template-header {{
+      color: var(--dark-text)
+    }}
+
+    #publications .publciations-header::after,
+    #awards .awards-header::after,
+    #homepage_template .homepage-template-header::after {{
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 50%;
+      height: 3px;
+      background-color: var(--accent-color);
+    }}
+
+    #publications h3 {{
+      font-family: 'Playfair Display', serif;
+    }}
+
+    .profile-title {{
+      flex-grow: 1;
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      font-size: 2.2vmin;
+      transition: all 0.3s ease;
+      color: #5a5a5a;
+      margin: 0;
+      padding: 0;
+    }}
+
+    body.dark-mode .profile-title {{
+      color: #bbbbbb;
+    }}
+
+    body.dark-mode #awards .award-date {{
+      color: #bbbbbb;
+    }}
+
+    .contact-links {{
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 4vmin;
+      transition: all 0.3s ease;
+      margin-top: 1.rem;
+    }}
+
+    .contact-links a {{
+      margin: 0.5rem;
+      font-size: 1.8vmin;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 50px;
+      padding: 0.5rem 1.5rem;
+      color: #1c6ca2;
+      border-color: #8d8d8d;
+    }}
+
+    .contact-links .btn:hover {{
+      transform: translateY(-3px);
+      color: #1c6ca2;
+      background-color: #bebebe;
+    }}
+
+    .author-hyperref {{
+      color: #2180c0;
+      text-decoration: none;
+    }}
+
+    body.dark-mode .author-hyperref {{
+      color: #66b3e7;
+    }}
+
+    .right-column {{
+      width: 67%;
+      overflow-y: auto;
+      padding: 10px;
+    }}
+
+    .footer {{
+      background-color: var(--dark-nav);
+      color: white;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 56px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 10%;
+    }}
+
+    .footer a {{
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }}
+
+    .publication-item {{
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #ffffff;
+      margin-right: 1rem;
+    }}
+
+    .publication-item:hover {{
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    }}
+
+    .footer a:hover {{
+      color: #ddd;
     }}
 
     footer .social-icons a {{
@@ -570,118 +597,63 @@ class WebsiteCreator:
       font-size: 1rem;
     }}
 
-    body.dark-mode .navbar-brand body.dark-mode .navbar-nav .nav-link {{
-      color: var(--dark-text) !important;
-    }}
-
-    body.dark-mode footer {{
-      background-color: #123c5b;
-    }}
-
-    body.dark-mode .navbar {{
-      background-color: #123c5b;
-    }}
-
-    body.dark-mode .publication-item {{
-      background-color: #174570;
-    }}
-
-    body.dark-mode .hidden-content {{
-      background-color: #3a6b9c;
-    }}
-
-    body.dark-mode .section-title {{
-      color: #bfd1dd
-    }}
-
-    body.dark-mode .futuristic-profile {{
-      background-color: #45719700;
-      color: #d0e0ed;
-      height: 10px
-    }}
-
-    body.dark-mode .profile-name {{
-      background-color: #ffffff;
-    }}
-
-    body.dark-mode h1,
-    body.dark-mode h2,
-    body.dark-mode h3,
-    body.dark-mode h4,
-    body.dark-mode h5 {{
-      color: #d0daea;
-    }}
-
-    .dark-mode-toggle {{
-      top: 30px;
-      right: 20px;
-      z-index: 1050;
-    }}
-
-    .dark-mode-toggle button {{
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      padding: 0;
-    }}
-
-    .dark-mode-toggle button:hover {{
-      background-color: var(--secondary-color);
-      transform: scale(1.1);
-    }}
-
-    .dark-mode-toggle button i {{
-      font-size: 1.2rem;
-    }}
-
-    .copy-bibtex {{
-      padding: 0.25rem 0.5rem;
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-    }}
-
-    .dark-mode .copy-bibtex {{
-      background-color: #174570;
-      border-color: #11b71700;
-    }}
-
-    #bibtex-content {{
-      font-size: 0.8rem;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }}
-
-    .left-column {{
-      position: sticky;
-      top: 76px;
-      /* height of the fixed header */
-      height: calc(100vh - 76px - 20px);
-      /* 76px for header, 56px for footer */
-      overflow-y: hidden;
-      /* Enable scrolling if content overflows */
-      padding: 20px;
-    }}
-
-    .right-column {{
-      padding: 20px;
-      margin-bottom: 26px;
-    }}
-
     @media (max-width: 768px) {{
+      .main {{
+        flex-direction: column;
+        height: auto;
+        margin-top: 58px;
+        overflow-y: auto;
+      }}
 
       .left-column,
       .right-column {{
-        position: static;
         width: 100%;
-        margin-left: 0;
+        padding: 1rem;
+      }}
+
+      .profile-img {{
+        height: auto;
+        width: 50%;
+        max-width: 200px;
+      }}
+
+      .profile-header {{
+        font-size: 6vmin;
+      }}
+
+      .profile-title {{
+        font-size: 3vmin;
+      }}
+
+      .about-me-header,
+      #awards .awards-header {{
+        font-size: 4vmin;
+      }}
+
+      .about-me {{
+        font-size: 2.5vmin;
+      }}
+
+      .contact-links a {{
+        font-size: 2.5vmin;
+        margin: 0.25rem;
+        padding: 0.25rem 0.75rem;
+      }}
+
+      .footer {{
+        position: relative;
+        height: auto;
+        padding: 1rem;
+        justify-content: center;
+      }}
+
+      body {{
+        overflow-y: auto;
+        /* Allow scrolling on the body */
+      }}
+
+      .about-me-header::after {{
+        top: 5vmin;
       }}
     }}
   </style>
@@ -691,22 +663,16 @@ class WebsiteCreator:
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#awards">{self.name}</a>
+      <a class="navbar-brand">{self.name}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item">
-            <a class="nav-link" href="#awards">Awards</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#publications">Publications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#homepage_templage">Design</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="#awards">Awards</a></li>
+          <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#homepage_template">Design</a></li>
           <li class="nav-item">
             <button id="darkModeToggle" class="btn btn-link nav-link" aria-label="Toggle dark mode">
               <i class="fas fa-moon"></i>
@@ -716,198 +682,151 @@ class WebsiteCreator:
       </div>
     </div>
   </nav>
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Left Column (Sticky) -->
-      <div class="col-md-4 left-column">
-        <!-- Profile Section -->
-        <section id="about" class="futuristic-profile">
-          <div class="profile-header">
-            <div class="col-md-12 col-lg-12 text-center mb-1">
-              <img src="assets/profile.jpg" class="profile-img img-fluid mb-3" alt="{self.name}">
-            </div>
-            <h1 class="profile-name">
-              {self.name}
-            </h1>
-            <p class="profile-title">
-              {self.title}
-            </p>
-          </div>
 
-          <div class="contact-links d-flex flex-wrap justify-content-center">
-            <a href="{self.cv}" target="_blank" class="btn btn-outline-primary">
-              <i class="fa fa-address-card" aria-hidden="true"></i> CV
-            </a>
-            <a href="mailto:{self.mail}" class="btn btn-outline-primary">
-              <i class="far fa-envelope-open" aria-hidden="true"></i> Mail
-            </a>
-            <a href="{self.scholar}" target="_blank"
-              class="btn btn-outline-primary">
-              <i class="fa-solid fa-book" aria-hidden="true"></i> Scholar
-            </a>
-            <a href="{self.github}" target="_blank" class="btn btn-outline-primary">
-              <i class="fab fa-github" aria-hidden="true"></i> Github
-            </a>
-            <a href="{self.linkedin}" target="_blank" class="btn btn-outline-primary">
-              <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
-            </a>
-            <a href="{self.youtube}" target="_blank" class="btn btn-outline-primary">
-              <i class="fab fa-youtube" aria-hidden="true"></i> YouTube
-            </a>
-          </div>
-
-          <!-- Bio & Interests -->
-          <section class="about-me">
-            <h2 class="section-title">About Me</h2>
-            <p>{self.bio}</p>
-          </section>
-          </section>
+  <div class="main">
+    <div class="left-column" id="container">
+      <!-- Profile Image -->
+      <img src="assets/profile.jpg" class="profile-img" alt="{self.name}">
+      <!-- Scalable Header -->
+      <div class="profile-header">{self.name}</div>
+      <div class="profile-title">{self.title}</div>
+      <div class="contact-links">
+        <a href="{self.cv}" target="_blank" class="btn btn-outline-primary">
+          <i class="fa fa-address-card" aria-hidden="true"></i> CV
+        </a>
+        <a href="mailto:{self.mail}" class="btn btn-outline-primary">
+          <i class="far fa-envelope-open" aria-hidden="true"></i> Mail
+        </a>
+        <a href="{self.scholar}" target="_blank"
+          class="btn btn-outline-primary">
+          <i class="fa-solid fa-book" aria-hidden="true"></i> Scholar
+        </a>
+        <a href="{self.github}" target="_blank" class="btn btn-outline-primary">
+          <i class="fab fa-github" aria-hidden="true"></i> Github
+        </a>
+        <a href="{self.linkedin}" target="_blank"
+          class="btn btn-outline-primary">
+          <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
+        </a>
+        <a href="{self.youtube}" target="_blank" class="btn btn-outline-primary">
+          <i class="fab fa-youtube" aria-hidden="true"></i> YouTube
+        </a>
       </div>
-      <!-- Right column remains unchanged -->
-      <!-- </div> -->
-      <!-- </div> -->
+      <div class="about-me-header">About Me</div>
+      <div class="about-me">
+        <p>{self.bio}</p>
+      </div>
+    </div>
 
-      <!-- Right Column (Scrollable) -->
-      <div class="col-md-8 right-column">
-        <!-- Awards Section -->
+    <div class="right-column">
+      <!-- Awards Section -->
+      <section id="awards">
+        <h2 class="awards-header">Awards</h2>
+        {self.awards}
+      </section>
 
-        <section id="awards">
-          <h2 class="section-title mb-4">Awards</h2>
-          {self.awards}
-          
-          
-
-        </section>
-
-        <!-- Publications Section -->
-        <section id="publications">
-          <h2 class="section-title mb-4">Publications</h2>
-          {self.publications}
-        </section>
-
-        <section id="homepage_templage">
-          <h2 class="section-title mb-4">Homepage Template</h2>
+      <!-- Publications Section -->
+      <section id="publications">
+        <h2 class="publciations-header">Publications</h2>
+        {self.publications}
+      </section>
+      <section id="homepage_template">
+        <h2 class="homepage-template-header mb-4">Homepage Template</h2>
+        <div class="homepage-template">
           <p>This website's design is inspired by <a href="https://m-niemeyer.github.io/" target="_blank"
               class="author-hyperref">Michael
               Niemeyer's personal site</a>. Checkout his <a href="https://github.com/m-niemeyer/m-niemeyer.github.io"
               target="_blank" class="author-hyperref">GitHub</a>!</p>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
-
   </div>
 
-  <!-- Footer -->
-  <footer class="py-2">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6 text-center text-md-start">
-        </div>
-        <div class="col-md-6 text-center text-md-end social-icons">
-          <!-- <a href="#" class="text-white"><i class="fab fa-twitter"></i></a> -->
-          <a href="{self.github}" class="text-white"><i class="fab fa-github"></i></a>
-          <a href="{self.linkedin}" class="text-white"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Dark Mode Toggle -->
-  <div class="dark-mode-toggle">
-    <button id="darkModeToggle" class="btn" aria-label="Toggle dark mode">
-      <i class="fas fa-moon"></i>
-    </button>
+  <!-- Fixed Footer -->
+  <div class="footer">
+    <a href="{self.github}" class="text-white" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="{self.linkedin}" class="text-white" target="_blank"><i
+        class="fab fa-linkedin"></i></a>
   </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Custom Scripts -->
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {{
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      const body = document.body;
-      const icon = darkModeToggle.querySelector('i');
-
-      // Check for saved theme preference or default to light mode
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {{
-        body.classList.add('dark-mode');
-        icon.classList.replace('fa-moon', 'fa-sun');
-      }}
-
-      darkModeToggle.addEventListener('click', () => {{
-        body.classList.toggle('dark-mode');
-        const isDarkMode = body.classList.contains('dark-mode');
-        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-
-        if (isDarkMode) {{
-          icon.classList.replace('fa-moon', 'fa-sun');
-        }} else {{
-          icon.classList.replace('fa-sun', 'fa-moon');
-        }}
-      }});
-    }});
-
-    function toggleAbstract(event) {{
-      event.preventDefault();
-      const publicationItem = event.target.closest('.publication-item');
-      const abstractSection = publicationItem.querySelector('.abstract-section');
-      abstractSection.style.display = abstractSection.style.display === 'none' ? 'block' : 'none';
-      const bibtexSection = publicationItem.querySelector('.bibtex-section');
-
-      if (abstractSection.style.display === 'block') {{
-        bibtexSection.style.display = 'none';
-      }}
-    }}
-
-    function toggleBibtex(event) {{
-      event.preventDefault();
-      const publicationItem = event.target.closest('.publication-item');
-      const bibtexSection = publicationItem.querySelector('.bibtex-section');
-      bibtexSection.style.display = bibtexSection.style.display === 'none' ? 'block' : 'none';
-      const abstractSection = publicationItem.querySelector('.abstract-section');
-
-      if (bibtexSection.style.display === 'block') {{
-        abstractSection.style.display = 'none';
-      }}
-    }}
-
-    function copyBibtex(button) {{
-      const bibtexContent = button.previousElementSibling.textContent;
-      navigator.clipboard.writeText(bibtexContent)
-        .then(() => {{
-          button.textContent = 'Copied!';
-          setTimeout(() => {{
-            button.textContent = 'Copy Bibtex';
-          }}, 2000);
-        }})
-        .catch(err => {{
-          console.error('Failed to copy: ', err);
-        }});
-    }}
-
-    function toggleDescription(button) {{
-      const description = button.parentElement.nextElementSibling;
-      if (description.style.display === 'none' || description.style.display === '') {{
-        description.style.display = 'block';
-      }} else {{
-        description.style.display = 'none';
-      }}
-    }}
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {{
-      anchor.addEventListener('click', function (e) {{
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({{
-          behavior: 'smooth'
-        }});
-      }});
-    }});
-  </script>
-
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {{
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const icon = darkModeToggle.querySelector('i');
+
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {{
+      body.classList.add('dark-mode');
+      icon.classList.replace('fa-moon', 'fa-sun');
+    }}
+
+    darkModeToggle.addEventListener('click', () => {{
+      body.classList.toggle('dark-mode');
+      const isDarkMode = body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+
+      if (isDarkMode) {{
+        icon.classList.replace('fa-moon', 'fa-sun');
+      }} else {{
+        icon.classList.replace('fa-sun', 'fa-moon');
+      }}
+    }});
+  }});
+
+  function toggleDescription(button) {{
+    const description = button.parentElement.nextElementSibling;
+    if (description.style.display === 'none' || description.style.display === '') {{
+      description.style.display = 'block';
+    }} else {{
+      description.style.display = 'none';
+    }}
+  }}
+
+  function toggleAbstract(event) {{
+    event.preventDefault();
+    const publicationItem = event.target.closest('.publication-item');
+    const abstractSection = publicationItem.querySelector('.abstract-section');
+    abstractSection.style.display = abstractSection.style.display === 'none' ? 'block' : 'none';
+    const bibtexSection = publicationItem.querySelector('.bibtex-section');
+
+    if (abstractSection.style.display === 'block') {{
+      bibtexSection.style.display = 'none';
+    }}
+  }}
+
+  function toggleBibtex(event) {{
+    event.preventDefault();
+    const publicationItem = event.target.closest('.publication-item');
+    const bibtexSection = publicationItem.querySelector('.bibtex-section');
+    bibtexSection.style.display = bibtexSection.style.display === 'none' ? 'block' : 'none';
+    const abstractSection = publicationItem.querySelector('.abstract-section');
+
+    if (bibtexSection.style.display === 'block') {{
+      abstractSection.style.display = 'none';
+    }}
+  }}
+
+  function copyBibtex(button) {{
+    const bibtexContent = button.previousElementSibling.textContent;
+    navigator.clipboard.writeText(bibtexContent)
+      .then(() => {{
+        button.textContent = 'Copied!';
+        setTimeout(() => {{
+          button.textContent = 'Copy Bibtex';
+        }}, 2000);
+      }})
+      .catch(err => {{
+        console.error('Failed to copy: ', err);
+      }});
+  }}
+</script>
 
 </html>
 """
