@@ -137,7 +137,7 @@ class WebsiteCreator:
 
                 self.publications += fr"""
                   <div class="publication-item row mb-3 p-2">
-                    <div class="col-md-3">
+                    <div class="image-container col-md-3">
                       {data['img']}
                     </div>
                     <div class="col-md-9">
@@ -623,6 +623,18 @@ class WebsiteCreator:
 
       .profile-title {{
         font-size: 3vmin;
+      }}
+
+      .publication-img {{
+        width: 50%;
+        height: auto;
+      }}
+
+      .image-container {{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
       }}
 
       .about-me-header,
