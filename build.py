@@ -626,7 +626,7 @@ class WebsiteCreator:
       }}
 
       .publication-img {{
-        width: 50%;
+        width: 70%;
         height: auto;
       }}
 
