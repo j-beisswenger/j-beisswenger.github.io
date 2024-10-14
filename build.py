@@ -236,7 +236,7 @@ class WebsiteCreator:
 
     .main {{
       display: flex;
-      height: calc(100vh - 103px);
+      height: calc(100vh - 58px);
       margin-top: 58px;
     }}
 
@@ -252,7 +252,7 @@ class WebsiteCreator:
       background-color: var(--dark-nav);
       z-index: 1000;
       height: 58px;
-      max-height: 56px;
+      max-height: 58px;
     }}
 
     .navbar-brand {{
@@ -565,11 +565,11 @@ class WebsiteCreator:
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 56px;
+      height: 40px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      padding-right: 10%;
+      padding-right: 50%;
     }}
 
     .footer a {{
@@ -597,9 +597,8 @@ class WebsiteCreator:
     }}
 
     footer .social-icons a {{
-      color: white;
-      margin-left: 0.5rem;
-      font-size: 1rem;
+      color: var(--bg-color);
+      padding: 0.5rem 1rem;
     }}
 
     @media (max-width: 768px) {{
@@ -779,13 +778,6 @@ class WebsiteCreator:
         </div>
       </section>
     </div>
-  </div>
-
-  <!-- Fixed Footer -->
-  <div class="footer">
-    <a href="{self.github}" class="text-white" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="{self.linkedin}" class="text-white" target="_blank"><i
-        class="fab fa-linkedin"></i></a>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
