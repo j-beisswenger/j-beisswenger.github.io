@@ -692,6 +692,7 @@ class WebsiteCreator:
 
       .navbar-nav .nav-link {{
         color: var(--primary-color) !important;
+        <!-- margin-left: auto; -->
       }}
     }}
   </style>
