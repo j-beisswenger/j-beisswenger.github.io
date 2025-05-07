@@ -10,6 +10,22 @@
 @STRING{ARXIV = {arXiv.org}}
 @STRING{ICLR = {Proc. of the International Conf. on Learning Representations (ICLR)}}
 
+
+@misc{jaeger2025carllearningscalableplanning,
+      title={CaRL: Learning Scalable Planning Policies with Simple Rewards}, 
+      author={Bernhard Jaeger, Daniel Dauner, Jens Beißwenger, Simon Gerstenecker, Kashyap Chitta, Andreas Geiger},
+      year={2025},
+      booktitle = ARXIV,
+      eprint={2504.17838},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      pdf={https://arxiv.org/pdf/2504.17838},
+      img={assets/publications/carl.jpg},
+      url={https://arxiv.org/abs/2504.17838}, 
+      abstract={We investigate reinforcement learning (RL) for privileged planning in autonomous driving. State-of-the-art approaches for this task are rule-based, but these methods do not scale to the long tail. RL, on the other hand, is scalable and does not suffer from compounding errors like imitation learning. Contemporary RL approaches for driving use complex shaped rewards that sum multiple individual rewards, e.g. progress, position, or orientation rewards. We show that PPO fails to optimize a popular version of these rewards when the mini-batch size is increased, which limits the scalability of these approaches. Instead, we propose a new reward design based primarily on optimizing a single intuitive reward term: route completion. Infractions are penalized by terminating the episode or multiplicatively reducing route completion. We find that PPO scales well with higher mini-batch sizes when trained with our simple reward, even improving performance. Training with large mini-batch sizes enables efficient scaling via distributed data parallelism. We scale PPO to 300M samples in CARLA and 500M samples in nuPlan with a single 8-GPU node. The resulting model achieves 64 DS on the CARLA longest6 v2 benchmark, outperforming other RL methods with more complex rewards by a large margin. Requiring only minimal adaptations from its use in CARLA, the same method is the best learning-based approach on nuPlan. It scores 91.3 in non-reactive and 90.6 in reactive traffic on the Val14 benchmark while being an order of magnitude faster than prior work.},
+      bibtex={title, author, year, eprint, url},
+}
+
 @inproceedings{sima2024drivelm,
   author={Chonghao Sima, Katrin Renz, Kashyap Chitta, Li Chen, Hanxue Zhang, Chengen Xie, Jens Beißwenger, Ping Luo, Andreas Geiger, Hongyang Li},
   title={DriveLM: Driving with Graph Visual Question Answering},
@@ -29,10 +45,11 @@
   title={Hidden Biases of End-to-End Driving Datasets},
   booktitle = ARXIV,
   year={2024},
-  pdf={https://opendrivelab.github.io/Challenge%202024/carla_Tuebingen%20AI.pdf},
+  pdf={https://arxiv.org/pdf/2412.09602},
   img={assets/publications/hidden_biases.jpg},
   award = {Honorable Runner-Up},
-  abstract={End-to-end driving systems have made rapid progress, but have so far not been applied to the challenging new CARLA Leaderboard 2.0. Furthermore, while there is a large body of literature on end-to-end architectures and training strategies, the impact of the training dataset is often overlooked. In this work, we make a first attempt at end-to-end driving for Leaderboard 2.0. Instead of investigating architectures, we systematically analyze the training dataset, leading to new insights: (1) Expert style significantly affects downstream policy performance. (2) On complex driving datasets, frames should not be weighted based on simplistic criteria such as class frequencies. (3) Instead, estimating whether a frame changes the target labels compared to previous frames can reduce dataset size without losing important information. By incorporating these findings, our model ranks first and second respectively on the map and sensors tracks of the 2024 CARLA Challenge.},
+  code = {https://github.com/autonomousvision/carla_garage},
+  abstract={End-to-end driving systems have made rapid progress, but have so far not been applied to the challenging new CARLA Leaderboard 2.0. Further, while there is a large body of literature on end-to-end architectures and training strategies, the impact of the training dataset is often overlooked. In this work, we make a first attempt at end-to-end driving for Leaderboard 2.0. Instead of investigating architectures, we systematically analyze the training dataset, leading to new insights: (1) Expert style significantly affects downstream policy performance. (2) In complex data sets, the frames should not be weighted on the basis of simplistic criteria such as class frequencies. (3) Instead, estimating whether a frame changes the target labels compared to previous frames can reduce the size of the dataset without removing important information. By incorporating these findings, our model ranks first and second respectively on the map and sensors tracks of the 2024 CARLA Challenge, and sets a new state-of-the-art on the Bench2Drive test routes. Finally, we uncover a design flaw in the current evaluation metrics and propose a modification for future challenges. Our dataset, code, and pre-trained models are publicly available at https://github.com/autonomousvision/carla_garage.},
   bibtex={title, author, year},
 }
 
